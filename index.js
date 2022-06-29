@@ -14,7 +14,7 @@ const addMovie = event =>{
 
     movieTitle.textContent = inputField.value;
 
-    movie.addEventListener(`click`,(crossoffMovie))
+    movieTitle.addEventListener(`click`,(crossoffMovie));
 
     movie.appendChild(movieTitle);
 
@@ -37,15 +37,29 @@ const crossoffMovie = event =>{
     event.target.classList.toggle(`checked`);
     
     if(event.target.classList.contains(`checked`)){
-        message.textContent = `Movie watched!`;
+        message.textContent = `${event.target.textContent} watched!`;
     }
     else{
-        message.textContent = `Movie added back!`
+        message.textContent = `${event.target.textContent} added back!`
     }
+    revealMessage();
 }
 
 const deleteMovie = event => {
     event.target.parentNode.remove();
-    message.textContent = `Movie Deleted!`
+    message.textContent = `${event.target.parentNode.textContent}  Movie Deleted!`
+    revealMessage();
 }
+
+const revealMessage = () =>
+{
+    message.classList.remove(`hide`);
+    setTimeout(() => {
+        message.classList.add (`hide`);
+    }, 1000);
+}
+
+
+
+
 
